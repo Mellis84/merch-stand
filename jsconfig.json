@@ -1,9 +1,13 @@
 {
     "compilerOptions": {
-        "baseUrl": "./",
+        "experimentalDecorators": true,
+        "baseUrl": ".",
         "paths": {
             "@styles/*": [
-                "styles/*"
+                "src/styles/*"
+            ],
+            "@components/*": [
+                "src/components/*"
             ]
         }
     }
