@@ -1,8 +1,19 @@
+import { FaShoppingCart } from "react-icons/fa";
+
+import Container from "@components/Container";
+
+import styles from "./Header.module.scss";
+
 const Header = () => {
     return (
-        <header>
-            <p>Matt&apos;s store</p>
-            <p>£0.00</p>
+        <header className={styles.header}>
+            <Container className={styles.headerContainer}>
+                <p className={styles.headerTitle}>Sick merch</p>
+                <p className={styles.headerCart}>
+                    <FaShoppingCart />
+                    £0.00
+                </p>
+            </Container>
         </header>
     );
 };

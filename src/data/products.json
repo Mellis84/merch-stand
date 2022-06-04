@@ -1,0 +1,38 @@
+[
+    {
+        "id": "belvedere-t-shirt",
+        "title": "Belvedere T-shirt",
+        "price": "£32.99",
+        "image": "/images/mockup-f092c21a.jpg"
+    },
+    {
+        "id": "mute-t-shirt",
+        "title": "Mute T-shirt",
+        "price": "£32.99",
+        "image": "/images/unisex-basic-softstyle-t-shirt-black-5fde6034bc3e8.jpg"
+    },
+    {
+        "id": "no-trigger-t-shirt",
+        "title": "No Trigger T-shirt",
+        "price": "£32.99",
+        "image": "/images/unisex-basic-softstyle-t-shirt-black-front-602fca8895c80.jpg"
+    },
+    {
+        "id": "a-wilhelm-scream-t-shirt",
+        "title": "A Wilhelm Scream T-shirt",
+        "price": "£32.99",
+        "image": "/images/unisex-basic-softstyle-t-shirt-black-front-606c27f1774e0.jpg"
+    },
+    {
+        "id": "belvedere-t-shirt-black",
+        "title": "Belvedere T-shirt Black",
+        "price": "£32.99",
+        "image": "/images/unisex-basic-softstyle-t-shirt-black-front-608fee5704569.jpg"
+    },
+    {
+        "id": "a-wilhelm-scream-long-sleeve-black",
+        "title": "A Wilhelm Scream Long Sleeve",
+        "price": "£42.99",
+        "image": "/images/unisex-crew-neck-sweatshirt-black-front-606c25b25f509.jpg"
+    }
+]
