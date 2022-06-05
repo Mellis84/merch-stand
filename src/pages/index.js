@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import Script from "next/script";
 
 import Header from "@components/Header";
 import Container from "@components/Container";
@@ -41,10 +42,20 @@ export default function Home() {
                                         {product.title}
                                     </h3>
                                     <p className={styles.productPrice}>
-                                        {product.price}
+                                        {`£${product.price}`}
                                     </p>
                                     <p>
-                                        <Button>Add to cart</Button>
+                                        <Button
+                                            className="snipcart-add-item"
+                                            data-item-id={product.id}
+                                            data-item-price={product.price}
+                                            data-item-url="/"
+                                            data-item-description=""
+                                            data-item-image={product.image}
+                                            data-item-name={product.title}
+                                        >
+                                            Add to cart
+                                        </Button>
                                     </p>
                                 </li>
                             );
@@ -56,6 +67,15 @@ export default function Home() {
             <footer className={styles.footer}>
                 &copy; Sick merch, {new Date().getFullYear()}
             </footer>
+
+            <Script src="https://cdn.snipcart.com/themes/v3.3.0/default/snipcart.js" />
+            <div
+                id="snipcart"
+                data-config-modal-style="side"
+                data-api-key={process.env.NEXT_PUBLIC_SNIPCART_API_KEY}
+                data-currency="gbp"
+                hidden
+            ></div>
         </div>
     );
 }
