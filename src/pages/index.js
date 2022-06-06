@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import Script from "next/script";
+import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
 import Header from "@components/Header";
 import Container from "@components/Container";
@@ -8,9 +9,7 @@ import Button from "@components/Button";
 
 import styles from "@styles/Home.module.scss";
 
-import products from "@data/products.json";
-
-export default function Home() {
+export default function Home({ products }) {
     return (
         <div>
             <Head>
@@ -30,28 +29,36 @@ export default function Home() {
                     <h2>Available merch</h2>
                     <ul className={styles.products}>
                         {products.map((product) => {
+                            const { featuredImage } = product;
+
                             return (
                                 <li key={product.id}>
                                     <Image
-                                        src={product.image}
-                                        height="1000"
-                                        width="1000"
-                                        alt={`Product ${product.title}`}
+                                        src={featuredImage.sourceUrl}
+                                        height={
+                                            featuredImage.mediaDetails.height
+                                        }
+                                        width={featuredImage.mediaDetails.width}
+                                        alt={featuredImage.altText}
                                     />
                                     <h3 className={styles.productTitle}>
                                         {product.title}
                                     </h3>
                                     <p className={styles.productPrice}>
-                                        {`£${product.price}`}
+                                        {`£${product.productPrice}`}
                                     </p>
                                     <p>
                                         <Button
                                             className="snipcart-add-item"
-                                            data-item-id={product.id}
-                                            data-item-price={product.price}
+                                            data-item-id={product.productId}
+                                            data-item-price={
+                                                product.productPrice
+                                            }
                                             data-item-url="/"
                                             data-item-description=""
-                                            data-item-image={product.image}
+                                            data-item-image={
+                                                featuredImage.sourceUrl
+                                            }
                                             data-item-name={product.title}
                                         >
                                             Add to cart
@@ -78,4 +85,60 @@ export default function Home() {
             ></div>
         </div>
     );
+}
+
+export async function getStaticProps() {
+    const client = new ApolloClient({
+        uri: "http://nextjs-snipcart-app-backend.test/graphql",
+        cache: new InMemoryCache(),
+    });
+
+    const response = await client.query({
+        query: gql`
+            query AllProducts {
+                products {
+                    edges {
+                        node {
+                            id
+                            product {
+                                productPrice
+                                productId
+                            }
+                            title
+                            uri
+                            content
+                            featuredImage {
+                                node {
+                                    altText
+                                    sourceUrl
+                                    mediaDetails {
+                                        height
+                                        width
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        `,
+    });
+
+    const products = response.data.products.edges.map(({ node }) => {
+        const data = {
+            ...node,
+            ...node.product,
+            featuredImage: {
+                ...node.featuredImage.node,
+            },
+        };
+
+        return data;
+    });
+
+    return {
+        props: {
+            products,
+        },
+    };
 }
