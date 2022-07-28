@@ -89,7 +89,7 @@ export default function Home({ products }) {
 
 export async function getStaticProps() {
     const client = new ApolloClient({
-        uri: "http://nextjs-snipcart-app-backend.test/graphql",
+        uri: "https://merchstand-api.mellisdev.co.uk/graphql",
         cache: new InMemoryCache(),
     });
 
