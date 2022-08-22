@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import Script from "next/script";
+import Link from "next/link";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
 import Header from "@components/Header";
@@ -33,20 +34,29 @@ export default function Home({ products }) {
 
                             return (
                                 <li key={product.id}>
-                                    <Image
-                                        src={featuredImage.sourceUrl}
-                                        height={
-                                            featuredImage.mediaDetails.height
-                                        }
-                                        width={featuredImage.mediaDetails.width}
-                                        alt={featuredImage.altText}
-                                    />
-                                    <h3 className={styles.productTitle}>
-                                        {product.title}
-                                    </h3>
-                                    <p className={styles.productPrice}>
-                                        {`£${product.productPrice}`}
-                                    </p>
+                                    <Link href={`/products/${product.slug}`}>
+                                        <a>
+                                            <Image
+                                                src={featuredImage.sourceUrl}
+                                                height={
+                                                    featuredImage.mediaDetails
+                                                        .height
+                                                }
+                                                width={
+                                                    featuredImage.mediaDetails
+                                                        .width
+                                                }
+                                                alt={featuredImage.altText}
+                                            />
+                                            <h3 className={styles.productTitle}>
+                                                {product.title}
+                                            </h3>
+                                            <p className={styles.productPrice}>
+                                                {`£${product.productPrice}`}
+                                            </p>
+                                        </a>
+                                    </Link>
+
                                     <p>
                                         <Button
                                             className="snipcart-add-item"
@@ -72,7 +82,7 @@ export default function Home({ products }) {
             </main>
 
             <footer className={styles.footer}>
-                &copy; Sick merch, {new Date().getFullYear()}
+                &copy; Merch Stand, {new Date().getFullYear()}
             </footer>
 
             <Script src="https://cdn.snipcart.com/themes/v3.3.0/default/snipcart.js" />

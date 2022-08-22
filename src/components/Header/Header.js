@@ -8,7 +8,7 @@ const Header = () => {
     return (
         <header className={styles.header}>
             <Container className={styles.headerContainer}>
-                <p className={styles.headerTitle}>Sick merch</p>
+                <p className={styles.headerTitle}>Merch Stand</p>
 
                 <p className={styles.headerCart}>
                     <button className="snipcart-checkout">
