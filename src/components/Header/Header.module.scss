@@ -1,7 +1,9 @@
+@import "@styles/settings/__settings";
+
 .header {
     padding: 0.5em;
     width: 100%;
-    background-color: blue;
+    background-color: $c-brand-purple;
     color: white;
 
     p {
@@ -17,6 +19,8 @@
 
 .headerTitle {
     font-size: 2em;
+    font-family: $font-family-display;
+    font-weight: $font-weight-display-bold;
 }
 
 .headerCart {

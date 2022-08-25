@@ -1,0 +1,33 @@
+
+@import "@styles/settings/__settings";
+
+#snipcart{
+    --shadow-default: 0 20px 24px -20px rgba(0,0,0,1), -10px 20px 24px -20px rgba(0,0,0,.4);
+
+    /* Default */
+    --bgColor-buttonPrimary: #{$c-brand-pink};
+
+    /* Hover */
+    --bgColor-buttonPrimary-hover: #{lighten($c-brand-pink, 10)};
+    --shadow-buttonPrimary-hover: none;
+
+    // /* Active */
+    --bgColor-buttonPrimary-active: #{darken($c-brand-pink, 10)};
+
+    // /* Focus */
+    --bgColor-buttonPrimary-focus: #{lighten($c-brand-pink, 10)};
+    --shadow-buttonPrimary-focus: 0 0 10px #{lighten($c-brand-pink, 10)};
+}
+
+.snipcart-sidecart--opened #__next {
+    &:after {
+        content: '';
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba($c-brand-purple,.2);
+    }
+}

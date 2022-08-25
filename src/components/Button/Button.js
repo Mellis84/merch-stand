@@ -1,17 +1,17 @@
-import styles from "./Button.module.scss";
+import styles from './Button.module.scss';
 
-const Button = ({ children, className, ...rest }) => {
-    let buttonClassName = styles.button;
+const Button = ({ children, className, colour, ...rest }) => {
+  let buttonClassName = styles.button;
 
-    if (className) {
-        buttonClassName = `${buttonClassName} ${className}`;
-    }
+  if (className) {
+    buttonClassName = `${buttonClassName} ${className}`;
+  }
 
-    return (
-        <button className={buttonClassName} {...rest}>
-            {children}
-        </button>
-    );
+  return (
+    <button className={buttonClassName} data-color={colour} {...rest}>
+      {children}
+    </button>
+  );
 };
 
 export default Button;
